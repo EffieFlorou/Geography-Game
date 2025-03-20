@@ -1,3 +1,4 @@
+    //Using Fisher-Yates (Knuth) Shuffle
 function shuffle(array) {
     let currentIndex = array.length, randomIndex;
 
@@ -10,7 +11,7 @@ function shuffle(array) {
             array[randomIndex], array[currentIndex]];
     }
     
-    return array;
+
 }
 
 function clickablePaths() {
@@ -43,8 +44,8 @@ function restart() {
     tr = 0;
     index = 0;
     clearInterval(timer);
-    randomStates = shuffle(states);
-    document.getElementById("RandomState").innerText = randomStates[index];
+    shuffle(states);
+    document.getElementById("RandomState").innerText = states[index];
     $("path").removeClass("FirstTry SecondTry ThirdTry Fail blinking");
     document.getElementById("timer").innerText = "0:00";
     seconds = 0;
@@ -77,15 +78,16 @@ let index = 0;
 let seconds = 0;
 let timer;
 const states = clickablePaths();
-let randomStates = shuffle(states);
-document.getElementById("RandomState").innerText = randomStates[index];  
+
+shuffle(states);
+document.getElementById("RandomState").innerText = states[index];  
 
 $(document).ready(() => {
     timer = setInterval(upTimer, 1000);
 
     $("path").click( function() {
-        console.log(tr);
-        if (randomStates[index] == ($(this).attr('name'))) {
+
+        if (states[index] == ($(this).attr('name'))) {
             switch (tr) {
                 case 0:
                     $(this).addClass("FirstTry");
@@ -109,12 +111,12 @@ $(document).ready(() => {
                 endOfGame();
             }
             else {
-                document.getElementById("RandomState").innerText = randomStates[index]; 
+                document.getElementById("RandomState").innerText = states[index]; 
             }
         }
         else {
             if (tr == 2) {
-                let right = document.getElementsByName(randomStates[index]);
+                let right = document.getElementsByName(states[index]);
                 $(right).addClass("Fail");
                 $(right).addClass("blinking");
                 tr++;

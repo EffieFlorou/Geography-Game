@@ -27,7 +27,7 @@ function clickablePaths() {
 
 
 function endOfGame() {
-    
+    tooltips.forEach((tooltip)=> tooltip.hide()); 
     let element_score = document.createElement("div");
     let element_timer = document.createElement("div");
     element_score.className = "label_score_time";

@@ -1,5 +1,5 @@
 
-tippy('path', {
+const tooltips = tippy('path', {
   arrow: true,
   trigger: 'click',
   animation: 'fade',
@@ -7,7 +7,7 @@ tippy('path', {
   onShow(instance) {
     setTimeout(() => {
       instance.hide();
-    }, 700);
+    }, 600);
   }
 });
 

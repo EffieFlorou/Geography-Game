@@ -16,19 +16,17 @@ function shuffle(array) {
 function clickablePaths() {
     let paths = document.querySelectorAll("path");
     let pathName = [];
-    let states = [];
+
     paths.forEach(path => {
         pathName.push(path.getAttribute("name"));
     });
-    pathName.forEach(name => {
-        states.push(name);
-    });
-    return states;
+
+    return pathName;
 }
 
 
-function EndOfGame() {
-    //Show Pop Up Text //
+function endOfGame() {
+    
     let element_score = document.createElement("div");
     let element_timer = document.createElement("div");
     element_score.className = "label_score_time";
@@ -45,8 +43,8 @@ function restart() {
     tr = 0;
     index = 0;
     clearInterval(timer);
-    RandomState = shuffle(states);
-    document.getElementById("RandomState").innerText = RandomState[index];
+    randomStates = shuffle(states);
+    document.getElementById("RandomState").innerText = randomStates[index];
     $("path").removeClass("FirstTry SecondTry ThirdTry Fail blinking");
     document.getElementById("timer").innerText = "0:00";
     seconds = 0;
@@ -65,6 +63,7 @@ document.getElementById("closePopup").addEventListener("click", () => {
     $(".label_score_time").remove();
 });
 
+
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
         clearInterval(timer);
@@ -78,15 +77,15 @@ let index = 0;
 let seconds = 0;
 let timer;
 const states = clickablePaths();
-let RandomState = shuffle(states);
-document.getElementById("RandomState").innerText = RandomState[index];  //index = 0 show the first region
+let randomStates = shuffle(states);
+document.getElementById("RandomState").innerText = randomStates[index];  
 
 $(document).ready(() => {
     timer = setInterval(upTimer, 1000);
 
     $("path").click( function() {
-        
-        if (RandomState[index] == ($(this).attr('name'))) {
+        console.log(tr);
+        if (randomStates[index] == ($(this).attr('name'))) {
             switch (tr) {
                 case 0:
                     $(this).addClass("FirstTry");
@@ -107,15 +106,15 @@ $(document).ready(() => {
             }
             index++;
             if (index == states.length) {
-                EndOfGame();
+                endOfGame();
             }
             else {
-                document.getElementById("RandomState").innerText = RandomState[index]; // show the next region
+                document.getElementById("RandomState").innerText = randomStates[index]; 
             }
         }
         else {
             if (tr == 2) {
-                let right = document.getElementsByName(RandomState[index]);
+                let right = document.getElementsByName(randomStates[index]);
                 $(right).addClass("Fail");
                 $(right).addClass("blinking");
                 tr++;

@@ -25,8 +25,6 @@
     --clr-white: #fff;
     --clr-red-dark: hsl(360, 67%, 44%);
     --clr-red-light: hsl(360, 71%, 66%);
-    --clr-green-dark: hsl(125, 67%, 44%);
-    --clr-green-light: hsl(125, 71%, 66%);
     --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     --ff-primary: "Roboto", sans-serif;
@@ -34,7 +32,9 @@
     --transition: all 0.3s linear;
     --spacing: 0.25rem;
     --radius: 0.5rem;
-    --seterra-color-red: #bf4140;
+    --color-red: #bf4140;
+    --color-orange: #e2b22d;
+    --color-yellow:#f5ee91;
 
 }
 
@@ -227,15 +227,15 @@ path:hover {
 }
 
 .SecondTry {
-    fill: #f5ee91;
+    fill: var(--color-yellow);
 }
 
 .ThirdTry {
-    fill: var(--seterra-color-orange);
+    fill: var(--color-orange);
 }
 
 .Fail {
-    fill: var(--seterra-color-red);
+    fill: var(--color-red);
 
 }
 
